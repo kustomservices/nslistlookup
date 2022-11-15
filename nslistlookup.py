@@ -60,6 +60,8 @@ def main():
                     dns_records[i] = ipval.to_text()
             except dns.resolver.NoAnswer:
                 print (f'{domain}: No answer:')
+            except dns.resolver.NXDOMAIN:
+                print (f'{domain}: Does not exist')
         
     
     if args.domain:
@@ -71,7 +73,9 @@ def main():
                 domain_records[i] = domain
                 dns_records[i] = ipval.to_text()
         except dns.resolver.NoAnswer:
-            print (f'{domain}: No answer:')
+            print (f'{domain}: No answer.')
+        except dns.resolver.NXDOMAIN:
+            print (f'{domain}: Does not exist.')
     
     #Print results
     i = 0
